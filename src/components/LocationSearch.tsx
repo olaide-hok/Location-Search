@@ -14,6 +14,7 @@ export default function LocationSearch({onPlaceClick}: LocationSearchProps) {
         event.preventDefault();
         const results = await search(term);
         setPlaces(results);
+        setTerm('');
     };
 
     return (
@@ -27,6 +28,7 @@ export default function LocationSearch({onPlaceClick}: LocationSearchProps) {
                     id="term"
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
+                    placeholder="Enter location name"
                 />
             </form>
 
@@ -37,6 +39,7 @@ export default function LocationSearch({onPlaceClick}: LocationSearchProps) {
                         <Fragment key={place.id}>
                             <p className="text-sm">{place.name}</p>
                             <button
+                                type="button"
                                 className="bg-blue-500 text-xs text-white font-bold py-1 rounded"
                                 onClick={() => onPlaceClick(place)}>
                                 Go
